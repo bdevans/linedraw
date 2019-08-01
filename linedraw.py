@@ -182,13 +182,13 @@ def sketch(path):
 
     lines = []
     if draw_contours:
-        lines += getcontours(IM.resize((resolution//contour_simplify,resolution//contour_simplify*h//w)),contour_simplify)
+        lines += getcontours(IM.resize((int(resolution/contour_simplify), int(resolution/contour_simplify*h/w))), contour_simplify)
     if draw_hatch:
-        lines += hatch(IM.resize((resolution//hatch_size,resolution//hatch_size*h//w)),hatch_size)
+        lines += hatch(IM.resize((int(resolution/hatch_size), int(resolution/hatch_size*h/w))), hatch_size)
 
     lines = sortlines(lines)
     if show_bitmap:
-        disp = Image.new("RGB",(resolution,resolution*h/w),(255,255,255))
+        disp = Image.new("RGB", (resolution, int(resolution*h/w)), (255,255,255))
         draw = ImageDraw.Draw(disp)
         for l in lines:
             draw.line(l,(0,0,0),5)
